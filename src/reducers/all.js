@@ -11,7 +11,7 @@ const initialStates = {
 }
 
 export default function(state=initialStates, action) {
-  console.log(action.type);
+  // console.log(action.type);
   switch (action.type) {
     case `${namespace}/ADD_TO_CART`: 
       return {
@@ -31,7 +31,7 @@ export default function(state=initialStates, action) {
 }
 
 export function addToCart(type,paramater) {
-  console.log(type);
+  // console.log(type);
   return {
     type,
     payload: paramater

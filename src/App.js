@@ -2,20 +2,33 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch } from 'react-router-dom';
 import { Router, Route, Link } from 'react-router';
-import { addToCart,A } from './reducers/cart-reducer'
+import CalendarMonth from './components/Calendar/CalendarMonth/CalendarMonth'
 
 class App extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      showCalendarMonth:false,
+    }
   }
-  jump = () => {
-      console.log(this.props.history);
-      this.props.history.push('/Login')
+  clickCalendarMonth = () => {
+    const { showCalendarMonth } = this.state;
+    this.setState({
+      showCalendarMonth:!showCalendarMonth
+    })
+  }
+  getYearMonth = (year,month) => {
+    console.log(year,month);
   }
   render() {
+    const { showCalendarMonth,currentMonth } = this.state;
     return (
-      <div className="App" onClick={this.jump.bind(this)}>
-        'zhanghang'
+      <div className="App">
+        <button onClick={this.clickCalendarMonth}>月历</button>
+        <CalendarMonth 
+          showCalendarMonth={showCalendarMonth}
+          getYearMonth={this.getYearMonth}
+        />
       </div>
     );
   }

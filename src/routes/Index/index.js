@@ -12,7 +12,10 @@ class IndexCom extends Component {
             unitCost:165
         }
         this.props.dispatch(addToCart('all/ADD_TO_CART',paramater))
-        this.props.dispatch(A('all/ADD_TO_A','20180304'))
+        Promise.all([this.props.dispatch(A('all/ADD_TO_A','20180304'))]).then(()=>{
+            console.log(this.props);
+            console.log(55555555);
+        });
     }
     componentWillReceiveProps(nextProps){
         console.log(nextProps)
@@ -22,6 +25,7 @@ class IndexCom extends Component {
         this.props.history.push('/Login')
     }
     render(){
+        console.log('zhanghang');
         return (
             <div>
                 <div onClick={this.jump.bind(this)}>首页</div>
@@ -31,4 +35,4 @@ class IndexCom extends Component {
     }
 
 }
-export default connect((state)=>{return state},(dispatch)=>{return {dispatch}})(IndexCom)
+export default connect((state)=>{return state.all},(dispatch)=>{return {dispatch}})(IndexCom)
