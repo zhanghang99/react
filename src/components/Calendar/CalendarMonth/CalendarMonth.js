@@ -12,10 +12,11 @@ export default class CalendarMonth extends Component{
       isShow:false,//年份下拉是否隐藏
       startYear:1990,//下拉年份的最久远的一个
       showCalendarMonth:false,//整个控件是否隐藏
-      isMove:0,
-      moveBorder:true,
+      isMove:0,//小于0则控件向左移，大于0则控件向右移，等于0则回归
+      moveBorder:true,//判断当前年份是否达到最远或最近年份，超过边界则禁止左右移动
     }
   }
+
   componentWillMount(){
     this.leftRightMove = true;//节流
     let { startYear } = this.state;
@@ -29,6 +30,7 @@ export default class CalendarMonth extends Component{
       allYear:allYear.reverse()
     })
   }
+
   componentWillReceiveProps(nextProps){
     if(nextProps.showCalendarMonth !== this.props.showCalendarMonth){
       this.setState({
@@ -36,6 +38,7 @@ export default class CalendarMonth extends Component{
       })
     }
   }
+
   clickCurrent = (i) => {
     const { chooseYear , current } = this.state;
     this.setState({
@@ -48,18 +51,21 @@ export default class CalendarMonth extends Component{
       );
     })
   }
+
   clickYear = (year) => {
     this.setState({
       chooseYear:year,
       isShow:false
     })
   }
+
   yearShow = () => {
     const { isShow } = this.state;
     this.setState({
       isShow:!isShow
     })
   }
+
   addYear = (num) => {
     if(this.leftRightMove){
       this.jieliu(num);
@@ -69,6 +75,7 @@ export default class CalendarMonth extends Component{
       },500)
     }
   }
+
   jieliu = (num) => {
     let { chooseYear,startYear,moveBorder } = this.state;
     moveBorder = chooseYear + num > new Date().getFullYear() || 
@@ -97,12 +104,14 @@ export default class CalendarMonth extends Component{
       },500)
     })
   }
+
   clickModel = () => {
     this.setState({
       showCalendarMonth:false,
       isShow:false,
     })
   }
+  
   render(){
     const { month,current,chooseYear,allYear,isShow, showCalendarMonth,isMove} = this.state;
     return (
@@ -163,7 +172,6 @@ export default class CalendarMonth extends Component{
               })
             }
           </div>
-          
         </div>
       </div>
     )
