@@ -7,9 +7,9 @@ class IndexCom extends Component {
     componentWillMount(){
         console.log(this.props);
         let paramater = {
-            product:"huwenpan",
-            quantity:28,
-            unitCost:165
+            product:"phone",
+            quantity:20000,
+            unitCost:20000
         }
         this.props.dispatch(addToCart('all/ADD_TO_CART',paramater))
         Promise.all([this.props.dispatch(A('all/ADD_TO_A','20180304'))]).then(()=>{
@@ -25,7 +25,6 @@ class IndexCom extends Component {
         this.props.history.push('/Login')
     }
     render(){
-        console.log('zhanghang');
         return (
             <div>
                 <div onClick={this.jump.bind(this)}>首页</div>

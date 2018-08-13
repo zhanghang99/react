@@ -1,6 +1,7 @@
 .CalendarMonth{
   background:#fff;
   position: fixed;
+  left:0;
   bottom:-500px;
   z-index: 5100; 
   transition: bottom .7s
